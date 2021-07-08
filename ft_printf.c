@@ -12,29 +12,33 @@
 
 #include "ft_printf.h"
 
-static int handle_flags_and_types(const char *format, int *i, int len)
-{
-    // se format for '-' -> alinhar à esquerda
-    if (format[*i] == '-')
-        ft_strtrim(format[*i], ' '); //hello
-    else if (format[*i] == '0' && NUMBERS) // -0.*cspdiuxX%
-    {
+// static int handle_types(const char *format, int *i, int len)
+// {
+//     // se format for '-' -> alinhar à esquerda
+//     if (format[*i] == '-')
+//         ft_strtrim(format[*i], ' '); //hello
+//     else if (format[*i] == '0' && NUMBERS) // -0.*cspdiuxX%
+//     {
         
-    }
-}
+//     }
+// }
 
-static int flags_and_types_identifier(const char *format, int *i, int len)
+// static int trata_tipo(Tipo opcao, char character)
+// {
+//     if (opcao.type == 's')
+//         character = handle_types(opcao.type);
+// }
+
+static void types_identifier(const char *format, int *i, int *len)
 {
-    // conta todos os tipos e flags e retorna a impressão correta e o len
+    t_flags fl;
     if (format[*i] != '%')
     {
-       while (ft_strchr(FLAGS_AND_TYPES, format[*i]))
-        {
-            // chama funcao para tratar as flags
-            len = handle_flags_and_types(format[*i], len);
-        }
+       if (ft_strchr_01(CONVERSIONS, format[*i]))
+            fl.type = format[(*i)++]; // 'A'
     }
-    return (len);
+    else
+		(*len) = -1;
 }
 
 int ft_printf(const char *format, ...)
@@ -46,29 +50,31 @@ int ft_printf(const char *format, ...)
     va_start(args, format);
     len = 0;
     i = 0;
-
     while (format[i] != '\0')
     {
         if (format[i] != '%')
-        {
-            ft_putchar_len(format[i], len); // tamanho = hello %-s, name // 7
-            i++;
-            len++;
-        }
+            ft_putchar_len(format[i++], &len); // tamanho = hello %-s, name // 7
         else
         {
             i++;
-            flags_and_types_identifier(format, &i, len);  // %[flags][width][.precision][size]type -> "hello" "    hello"
+            types_identifier(format, &i, &len);
+            if (len == -1)
+				return (-1);  // %[flags][width][.precision][size]type -> "hello" "    hello"
         }
     }
     va_end(args);
     return(len);
 }
 
-int main(void)
+int main (void)
 {
-    ft_printf("Hello World!");
+
+    ft_printf("Este é o caractere %c", 'A');
+    return (0);
 }
+// 1 coisa: tratar e printar o char
+// ao encontrar a flag, tratar e printar 
+// começar com o char, depois string
 
 // if (format[*i] != '%') // 
 
