@@ -25,7 +25,7 @@
 
 typedef struct {
     char type;
-    int  integer;
+    char   *strNum;
     int width;
     int precision;
 } t_flags;
@@ -42,8 +42,8 @@ void	ft_putchar(char c);
 void	ft_putnbr(int n);
 char	*ft_itoa(int n);
 void	ft_putstr_len(char *s, int *len);
-void	print_s(char *c, int *len);
-void    print_int(t_flags fl, va_list args);
+void    print_s(char *c, int *len);
+void    print_int(t_flags fl, va_list args, int *len);
 
 
 #endif

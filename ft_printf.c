@@ -29,48 +29,35 @@
 //         character = handle_types(opcao.type);
 // }
 
-static void types_identifier(const char *format, int *i, int *len, va_list args)
+static void handle_types(int *len, va_list args, t_flags fl)
 {
-   char *print_c;
-   //char *print_s;
+    if (fl.type == 'c')
+        print_c(va_arg(args, int), len);
+    if (fl.type == 's')
+        print_s(va_arg(args, char *), len);
+    if (fl.type == 'i' || fl.type == 'd' || fl.type == 'u')
+        print_int(fl, args, len);
+    // if (fl.type == 'p')
+    //    print_c  = va_arg(args, char *);
+    // write(1, &print_c, 1);
+    // if (fl.type == 'x')
+    //    print_c  = va_arg(args, char *);
+    // write(1, &print_c, 1);
+    // if (fl.type == 'X')
+    //    print_c  = va_arg(args, char *);
+    // write(1, &print_c, 1);
+    // if (fl.type == '%')
+    //    print_c  = va_arg(args, char *);
+    // write(1, &print_c, 1);
+}
 
+static void get_specs(const char *format, int  *i, int *len, va_list args) {
     t_flags fl;
-    if (format[*i] != '%')
+    if (ft_strchr_01(CONVERSIONS, format[*i]))
     {
-       if (ft_strchr_01(CONVERSIONS, format[*i])) // Se a ocorrencia de format[*i] estiver em CONVERSIONS
-       {
-            // printar char com a funcao ft_putchar:
-            fl.type = format[(*i)++]; // 'A' // "%c"
-            if (fl.type == 'c')
-                print_c = va_arg(args, char *);
-            ft_putchar(*print_c);
-            // printar string com a funcao 
-      /*    if (fl.type == 's')
-                print_s = va_arg(args, char *);
-            ft_strchr(print_s, len);
-            if (fl.type == 'p')
-               print_c  = va_arg(args, char *);
-            write(1, &print_c, 1);
-            // printar int e decimal com a funcao ft_putnbr
-            if (fl.type == 'd' || fl.type == 'i')
-               ft_putnbr(va_arg(args, int));
-            if (fl.type == 'u')
-               print_c  = va_arg(args, char *);
-            write(1, &print_c, 1);
-            if (fl.type == 'x')
-               print_c  = va_arg(args, char *);
-            write(1, &print_c, 1);
-            if (fl.type == 'X')
-               print_c  = va_arg(args, char *);
-            write(1, &print_c, 1);
-            if (fl.type == '%')
-               print_c  = va_arg(args, char *);
-            write(1, &print_c, 1);
-            */
-       }
-    }
-    else
-		(*len) = -1;
+         fl.type = format[(*i)++];
+         handle_types(len, args, fl);
+    }    
 }
 
 int ft_printf(const char *format, ...)
@@ -89,9 +76,9 @@ int ft_printf(const char *format, ...)
         else
         {
             i++;
-            types_identifier(format, &i, &len, args);
+            get_specs(format, &i, &len, args);
             if (len == -1)
-				return (-1);  // %[flags][width][.precision][size]type -> "hello" "    hello"
+				return (-1); // %[flags][width][.precision][size]type -> "hello" "    hello"
         }
     }
     va_end(args);
@@ -101,18 +88,34 @@ int ft_printf(const char *format, ...)
 int main (void)
 {
    
-   //integer
-   int number = 123456789;
-   ft_printf("%i", number);
+   int number1;
+   int number2;
+   int tamanho;
    
+   number1 = 15;
+   number2 = 16;
+   tamanho = ft_printf("%i%i", number1, number2);
+   ft_printf("\n");
+   ft_printf("tamanho é: %i", tamanho);
+   ft_printf("\n");
 
-   /*
-   //string
-    ft_printf("Hello %s", "Jorge e Alexandre e Alfredo");
-    ft_printf("\n");
-   */
+
+    // int tamanho;
+   
+    // tamanho = ft_printf("Hello %c - ", 'A');
+    // printf("%d", tamanho);
+    // printf("\n");
+
+    // int tamanho;
+   
+    // tamanho = ft_printf("Hello %s - ", "Alexandre e Jorge");
+    // printf("%d", tamanho);
+    // printf("\n");
+   
     return (0);
 }
+
+
 
 // 1 coisa: tratar e printar o char
 // ao encontrar a flag, tratar e printar 

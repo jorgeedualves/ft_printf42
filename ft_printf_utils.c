@@ -41,10 +41,10 @@ void		print_s(char *c, int *len)
 	ft_putstr_len(c, len);
 }
 
-void print_int(t_flags fl, va_list args)
+void print_int(t_flags fl, va_list args, int *len)
 {
-	fl.integer = va_arg(args, int);
-	ft_putnbr(fl.integer);
+	fl.strNum = ft_itoa(va_arg(args, int));
+	ft_putstr_len(fl.strNum, len);
 }
 
 //para imprimir integer:
