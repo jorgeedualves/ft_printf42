@@ -20,7 +20,7 @@
 
 
 # define CONVERSIONS	"cspdiuxX%"
-# define ALL_FLAGS "-0.*0123456789cspdiuxX%"
+# define ALL_FLAGS "-0.0123456789cspdiuxX%"
 # define NUMBERS		"0123456789"
 
 typedef struct 
@@ -29,7 +29,6 @@ typedef struct
     char    *strNum;
     int     width;
     int     precision;
-    char    *set[20];
 } t_flags;
 
 int     ft_printf(const char *format, ...);
@@ -51,5 +50,17 @@ char	*ft_uitoa(unsigned int n);
 int 	ft_ulen(unsigned int num);
 void	print_c(char c, int *len);
 
+
+void	print_p(t_flags fl, va_list args, int *len);
+char    *ft_int_to_hex_px(unsigned long int n);
+void	ft_putstr_len_p(char *s, int *len);
+int		ft_len_hex(unsigned long int x);
+
+void	print_x(t_flags fl, va_list args, int *len);
+
+char	*ft_int_to_hex_X(unsigned long int n);
+void	print_X(t_flags fl, va_list args, int *len);
+
+void print_pct(int *len);
 
 #endif

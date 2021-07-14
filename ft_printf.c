@@ -22,18 +22,14 @@ static void handle_types(int *len, va_list args, t_flags fl)
         print_i_d(fl, args, len);
     if (fl.type == 'u')
         print_u(fl, args, len);
-    // if (fl.type == 'p')
-    //    print_c  = va_arg(args, char *);
-    // write(1, &print_c, 1);
-    // if (fl.type == 'x')
-    //    print_c  = va_arg(args, char *);
-    // write(1, &print_c, 1);
-    // if (fl.type == 'X')
-    //    print_c  = va_arg(args, char *);
-    // write(1, &print_c, 1);
-    // if (fl.type == '%')
-    //    print_c  = va_arg(args, char *);
-    // write(1, &print_c, 1);
+    if (fl.type == 'p')
+        print_p(fl, args, len);
+    if (fl.type == 'x')
+        print_x(fl, args, len);
+    if (fl.type == 'X')
+        print_X(fl, args, len);
+    if (fl.type == '%')
+        print_pct(len);
 }
 
 static void get_specs(const char *format, int  *i, int *len, va_list args) 

@@ -36,21 +36,117 @@ void		print_c(char c, int *len)
 	ft_putchar_len(c, len);
 }
 
-void		print_s(char *c, int *len)
+void	print_s(char *c, int *len)
 {
 	ft_putstr_len(c, len);
 }
 
-void print_i_d(t_flags fl, va_list args, int *len)
+void 	print_i_d(t_flags fl, va_list args, int *len)
 {
 	fl.strNum = ft_itoa(va_arg(args, int));
 	ft_putstr_len(fl.strNum, len);
 }
 
-void print_u(t_flags fl, va_list args, int *len)
+void 	print_u(t_flags fl, va_list args, int *len)
 {
 	fl.strNum = ft_uitoa(va_arg(args, unsigned int));
 	ft_putstr_len(fl.strNum, len);	
+}
+
+void	print_p(t_flags fl, va_list args, int *len)
+{
+	fl.strNum = ft_int_to_hex_px(va_arg(args, unsigned long int));
+	ft_putstr_len_p(fl.strNum, len);
+}
+
+void	print_x(t_flags fl, va_list args, int *len)
+{
+	fl.strNum = ft_int_to_hex_px(va_arg(args, unsigned long int));
+	ft_putstr_len(fl.strNum, len);
+}
+
+void	print_X(t_flags fl, va_list args, int *len)
+{
+	fl.strNum = ft_int_to_hex_X(va_arg(args, unsigned long int));
+	ft_putstr_len(fl.strNum, len);
+}
+
+void print_pct(int *len)
+{
+	ft_putstr_len("%", len);
+}
+void	ft_putstr_len_p(char *s, int *len)
+{
+	int i;
+
+	write(1, "0x", 2);
+	if (s != NULL)
+	{
+		i = 0;
+		while (s[i])
+			ft_putchar_len(s[i++], len);
+	}
+}
+
+int		ft_len_hex(unsigned long int x)
+{
+	int len;
+	
+	len  = 0;
+	while (x)
+	{
+		x = x / 16;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_int_to_hex_px(unsigned long int n)
+{ 
+	int len;
+	char *result;
+
+	len = ft_len_hex(n);
+	result = (char *)malloc(len + 1);
+	if (result == NULL)
+		return (0);
+	result[len--] = '\0';
+	while (len >= 0)
+	{
+		int temp;
+
+		temp = n % 16;
+        if (temp < 10) 
+            result[len--] = temp + 48;
+        else 
+            result[len--] = temp + 87;
+        n = n / 16;
+    }
+	return (result);	
+}
+
+char	*ft_int_to_hex_X(unsigned long int n)
+{ 
+	int len;
+	char *result;
+
+	len = ft_len_hex(n);
+	result = (char *)malloc(len + 1);
+	if (result == NULL)
+		return (0);
+	result[len--] = '\0';
+	while (len >= 0)
+	{
+		int temp;
+
+		temp = n % 16;
+        if (temp < 10) 
+            result[len--] = temp + 48;
+        else 
+            result[len--] = temp + 55;
+        n = n / 16;
+    }
+	return (result);	
 }
 
 //para imprimir integer:
@@ -179,7 +275,7 @@ char	*ft_uitoa(unsigned int n)
 	char	*result;
 
 	len = ft_ulen(n);
-	result = (char *)malloc(sizeof(char) * len + 1);
+	result = (char *)malloc(sizeof(char) * len - 1);
 	if (result == NULL)
 		return (0);
 	result[len] = '\0';
