@@ -12,31 +12,16 @@
 
 #include "ft_printf.h"
 
-// static int handle_types(const char *format, int *i, int len)
-// {
-//     // se format for '-' -> alinhar à esquerda
-//     if (format[*i] == '-')
-//         ft_strtrim(format[*i], ' '); //hello
-//     else if (format[*i] == '0' && NUMBERS) // -0.*cspdiuxX%
-//     {
-        
-//     }
-// }
-
-// static int trata_tipo(Tipo opcao, char character)
-// {
-//     if (opcao.type == 's')
-//         character = handle_types(opcao.type);
-// }
-
 static void handle_types(int *len, va_list args, t_flags fl)
 {
     if (fl.type == 'c')
         print_c(va_arg(args, int), len);
     if (fl.type == 's')
         print_s(va_arg(args, char *), len);
-    if (fl.type == 'i' || fl.type == 'd' || fl.type == 'u')
-        print_int(fl, args, len);
+    if (fl.type == 'i' || fl.type == 'd')
+        print_i_d(fl, args, len);
+    if (fl.type == 'u')
+        print_u(fl, args, len);
     // if (fl.type == 'p')
     //    print_c  = va_arg(args, char *);
     // write(1, &print_c, 1);
@@ -51,8 +36,16 @@ static void handle_types(int *len, va_list args, t_flags fl)
     // write(1, &print_c, 1);
 }
 
-static void get_specs(const char *format, int  *i, int *len, va_list args) {
+static void get_specs(const char *format, int  *i, int *len, va_list args) 
+{
     t_flags fl;
+ /*   int j;
+    j = 0;
+
+    while(ft_strchr_01(ALL_FLAGS, format[*i]) && j < 19)
+        fl.set[j++] = format[(*i)++];
+    fl.set[j] = '\0';
+*/    
     if (ft_strchr_01(CONVERSIONS, format[*i]))
     {
          fl.type = format[(*i)++];
@@ -87,40 +80,17 @@ int ft_printf(const char *format, ...)
 
 int main (void)
 {
-   
-   int number1;
-   int number2;
-   int tamanho;
-   
-   number1 = 15;
-   number2 = 16;
-   tamanho = ft_printf("%i%i", number1, number2);
-   ft_printf("\n");
-   ft_printf("tamanho é: %i", tamanho);
-   ft_printf("\n");
+    // c - i - d - u - s
 
+    char c = 'z';
+    char *s = "Vila";
+    int in = 42;
+    int dec = 42;
+    unsigned int ui = -300;
 
-    // int tamanho;
    
-    // tamanho = ft_printf("Hello %c - ", 'A');
-    // printf("%d", tamanho);
-    // printf("\n");
+    ft_printf(" string: %s, char: %c, int: %i, decimal: %d, unsigned: %u\n\n", s, c, in, dec, ui);
+   // printf("\nchar: %c, string: %s, int: %i, decimal: %d, unsigned: %u\n\n", c, s, in, dec, ui);
 
-    // int tamanho;
-   
-    // tamanho = ft_printf("Hello %s - ", "Alexandre e Jorge");
-    // printf("%d", tamanho);
-    // printf("\n");
-   
     return (0);
 }
-
-
-
-// 1 coisa: tratar e printar o char
-// ao encontrar a flag, tratar e printar 
-// começar com o char, depois string
-
-// if (format[*i] != '%') // 
-
-// gera_flags(format, &i, tamanho, args); //
