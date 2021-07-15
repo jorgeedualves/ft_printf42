@@ -61,7 +61,7 @@ int ft_printf(const char *format, ...)
     while (format[i] != '\0')
     {
         if (format[i] != '%')
-            ft_putchar_len(format[i++], &len); // tamanho = hello %-s, name // 7
+            ft_putchar_len(format[i++], &len);
         else
         {
             i++;
@@ -86,7 +86,7 @@ int main (void)
 
    
     ft_printf(" string: %s, char: %c, int: %i, decimal: %d, unsigned: %u\n\n", s, c, in, dec, ui);
-   // printf("\nchar: %c, string: %s, int: %i, decimal: %d, unsigned: %u\n\n", c, s, in, dec, ui);
+    printf("\nchar: %c, string: %s, int: %i, decimal: %d, unsigned: %u\n\n", c, s, in, dec, ui);
 
     return (0);
 }
