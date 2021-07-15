@@ -18,9 +18,9 @@ void	ft_putchar_len(char c, int *len)
 	(*len)++;
 }
 
-int		ft_strchr_01(char *s, char c)
+int	ft_strchr_01(char *s, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -31,7 +31,7 @@ int		ft_strchr_01(char *s, char c)
 	return (0);
 }
 
-void		print_c(char c, int *len)
+void	print_c(char c, int *len)
 {
 	ft_putchar_len(c, len);
 }
@@ -41,16 +41,16 @@ void	print_s(char *c, int *len)
 	ft_putstr_len(c, len);
 }
 
-void 	print_i_d(t_flags fl, va_list args, int *len)
+void	print_i_d(t_flags fl, va_list args, int *len)
 {
 	fl.strNum = ft_itoa(va_arg(args, int));
 	ft_putstr_len(fl.strNum, len);
 }
 
-void 	print_u(t_flags fl, va_list args, int *len)
+void	print_u(t_flags fl, va_list args, int *len)
 {
 	fl.strNum = ft_uitoa(va_arg(args, unsigned int));
-	ft_putstr_len(fl.strNum, len);	
+	ft_putstr_len(fl.strNum, len);
 }
 
 void	print_p(t_flags fl, va_list args, int *len)
@@ -71,13 +71,14 @@ void	print_X(t_flags fl, va_list args, int *len)
 	ft_putstr_len(fl.strNum, len);
 }
 
-void print_pct(int *len)
+void	print_pct(int *len)
 {
 	ft_putstr_len("%", len);
 }
+
 void	ft_putstr_len_p(char *s, int *len)
 {
-	int i;
+	int	i;
 
 	write(1, "0x", 2);
 	if (s != NULL)
@@ -88,11 +89,11 @@ void	ft_putstr_len_p(char *s, int *len)
 	}
 }
 
-int		ft_len_hex(unsigned long int x)
+int	ft_len_hex(unsigned long int x)
 {
-	int len;
-	
-	len  = 0;
+	int	len;
+
+	len = 0;
 	while (x)
 	{
 		x = x / 16;
@@ -102,9 +103,10 @@ int		ft_len_hex(unsigned long int x)
 }
 
 char	*ft_int_to_hex_px(unsigned long int n)
-{ 
-	int len;
-	char *result;
+{
+	int		len;
+	char	*result;
+	int		temp;
 
 	len = ft_len_hex(n);
 	result = (char *)malloc(len + 1);
@@ -113,22 +115,22 @@ char	*ft_int_to_hex_px(unsigned long int n)
 	result[len--] = '\0';
 	while (len >= 0)
 	{
-		int temp;
-
+		temp = 0;
 		temp = n % 16;
-        if (temp < 10) 
-            result[len--] = temp + 48;
-        else 
-            result[len--] = temp + 87;
-        n = n / 16;
-    }
-	return (result);	
+		if (temp < 10)
+			result[len--] = temp + 48;
+		else
+			result[len--] = temp + 87;
+		n = n / 16;
+	}
+	return (result);
 }
 
 char	*ft_int_to_hex_X(unsigned long int n)
-{ 
-	int len;
-	char *result;
+{
+	int		len;
+	char	*result;
+	int		temp;
 
 	len = ft_len_hex(n);
 	result = (char *)malloc(len + 1);
@@ -137,19 +139,17 @@ char	*ft_int_to_hex_X(unsigned long int n)
 	result[len--] = '\0';
 	while (len >= 0)
 	{
-		int temp;
-
+		temp = 0;
 		temp = n % 16;
-        if (temp < 10) 
-            result[len--] = temp + 48;
-        else 
-            result[len--] = temp + 55;
-        n = n / 16;
-    }
-	return (result);	
+		if (temp < 10)
+			result[len--] = temp + 48;
+		else
+			result[len--] = temp + 55;
+		n = n / 16;
+	}
+	return (result);
 }
 
-//para imprimir integer:
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -169,7 +169,7 @@ void	ft_putstr(char *s)
 
 void	ft_putstr_len(char *s, int *len)
 {
-	int i;
+	int	i;
 
 	if (s != NULL)
 	{
