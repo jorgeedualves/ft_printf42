@@ -12,89 +12,62 @@
 
 #include "ft_printf.h"
 
-int	ft_len(int num)
+size_t	ft_strlen(const char *s)
 {
-	size_t	len;
+	size_t	i;
 
-	if (num <= 0)
-		len = 1;
-	else
-		len = 0;
-	while (num != 0)
-	{
-		num = num / 10;
-		len++;
-	}
-	return (len);
+	i = 0;
+	while (*(s++))
+		i++;
+	return (i);
 }
 
-int	ft_ulen(unsigned int num)
+void	ft_putstr(char *s)
 {
-	size_t	len;
-
-	if (num <= 0)
-		len = 1;
-	else
-		len = 0;
-	while (num != 0)
-	{
-		num = num / 10;
-		len++;
-	}
-	return (len);
+	if (!s)
+		return ;
+	write(1, s, ft_strlen(s));
 }
 
-int	ft_to_positive(int num)
+void	ft_putstr_len(char *s, int *len)
 {
-	if (num < 0)
-		return (-num);
-	else
-		return (num);
+	int i;
+
+	if (s != NULL)
+	{
+		i = 0;
+		while (s[i])
+			ft_putchar_len(s[i++], len);
+	}
 }
 
-char	*ft_itoa(int n)
+void	ft_putstr_len_p(char *s, int *len)
 {
-	int		sign;
-	int		len;
-	char	*result;
+	int i;
 
-	if (n < 0)
-		sign = -1;
-	else
-		sign = 1;
-	len = ft_len(n);
-	result = (char *)malloc(sizeof(char) * len + 1);
-	if (result == NULL)
-		return (0);
-	result[len] = '\0';
-	len--;
-	while (len >= 0)
+	write(1, "0x", 2);
+	if (s != NULL)
 	{
-		result[len] = '0' + ft_to_positive(n % 10);
-		n = ft_to_positive(n / 10);
-		len--;
+		i = 0;
+		while (s[i])
+			ft_putchar_len(s[i++], len);
 	}
-	if (sign == -1)
-		result[0] = '-';
-	return (result);
 }
 
-char	*ft_uitoa(unsigned int n)
+void	ft_putnbr(int n)
 {
-	int		len;
-	char	*result;
-
-	len = ft_ulen(n);
-	result = (char *)malloc(sizeof(char) * len - 1);
-	if (result == NULL)
-		return (0);
-	result[len] = '\0';
-	len--;
-	while (len >= 0)
+	if (n == -2147483648)
+		ft_putstr("-2147483648");
+	if (n < 0 && n != -2147483648)
 	{
-		result[len] = '0' + (n % 10);
-		n = n / 10;
-		len--;
+		ft_putchar('-');
+		n = n * -1;
 	}
-	return (result);
+	if (n <= 9 && n >= 0)
+		ft_putchar(n + 48);
+	else if (n > 0)
+	{
+		ft_putnbr(n / 10);
+		ft_putchar(n % 10 + 48);
+	}
 }
