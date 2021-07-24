@@ -12,68 +12,31 @@
 
 #include "ft_printf.h"
 
-int		ft_len_hex(unsigned long int x)
+t_flags	ft_clean_flags(void)
 {
-	int len;
-	
-	len  = 0;
-	while (x)
+	t_flags	fl;
+
+	fl.minus = 0;
+	fl.zero = 0;
+	fl.width = 0;
+	fl.dot = 0;
+	fl.precision = 0;
+	return (fl);
+}
+
+void	ft_putstr_len(char *s, int *len)
+{
+	int	i;
+
+	if (s != NULL)
 	{
-		x = x / 16;
-		len++;
+		i = 0;
+		while (s[i])
+			ft_putchar_len(s[i++], len);
 	}
-	return (len);
 }
 
-char	*ft_int_to_hex_pxX(unsigned long int n, t_flags fl)
-{ 
-	int len;
-	char *result;
-	int temp;
-
-	len = ft_len_hex(n);
-	result = (char *)malloc(len + 1);
-	if (result == NULL)
-		return (0);
-	result[len--] = '\0';
-	while (len >= 0)
-	{
-		temp = 0;
-		temp = n % 16;
-        if (temp < 10) 
-            result[len--] = temp + 48;
-        else 
-		{
-			if (fl.type == 'x' || fl.type == 'p')
-            	result[len--] = temp + 87;
-			else
-				result[len--] = temp + 55;
-		}
-		n = n / 16;
-    }
-	return (result);	
-}
-
-void	ft_putchar(char c)
+void	print_pct(int *len)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putchar_len(char c, int *len)
-{
-	write(1, &c, 1);
-	(*len)++;
-}
-
-int		ft_strchr(char *s, char c)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i++] == c)
-			return (1);
-	}
-	return (0);
+	ft_putstr_len("%", len);
 }
