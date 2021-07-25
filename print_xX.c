@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-void	print_xX(t_flags fl, va_list args, int *len)
+void	print_xX(t_flags fl, va_list args, int *len, const char c)
 {
 	int	size;
 
-	fl.strNum = ft_int_to_hex_pxX(va_arg(args, unsigned long int), fl);
+	fl.strNum = ft_int_to_hex_pxX(va_arg(args, unsigned long int), c);
 	size = (int)ft_strlen(fl.strNum);
 	if (fl.minus == 0 && fl.width > size)
 		print_xX_right_aligned(fl, len, size);
@@ -61,7 +61,7 @@ int	ft_len_hex(unsigned long int x)
 	return (len);
 }
 
-char	*ft_int_to_hex_pxX(unsigned long int n, t_flags fl)
+char	*ft_int_to_hex_pxX(unsigned long int n, const char c)
 {
 	int		len;
 	char	*result;
@@ -80,7 +80,7 @@ char	*ft_int_to_hex_pxX(unsigned long int n, t_flags fl)
 			result[len--] = temp + 48;
 		else
 		{
-			if (fl.type == 'x' || fl.type == 'p')
+			if (c == 'x' || c == 'p')
 				result[len--] = temp + 87;
 			else
 				result[len--] = temp + 55;
