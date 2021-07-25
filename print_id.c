@@ -37,7 +37,8 @@ void	print_i_d(t_flags fl, va_list args, int *len)
 			print_space(fl, size, len);
 			ft_putstr_len(fl.strNum, len);
 		}
-	}	
+	}
+	free(fl.strNum);	
 }
 
 void	print_space(t_flags fl, int size, int *len)

@@ -33,6 +33,7 @@ void	print_u(t_flags fl, va_list args, int *len)
 		print_u_space_string(fl, len, size);
 	else
 		ft_putstr_len(fl.strNum, len);
+	free(fl.strNum);
 }
 
 void	print_u_space_string(t_flags fl, int *len, int size)
