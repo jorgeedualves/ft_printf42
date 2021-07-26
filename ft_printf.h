@@ -30,6 +30,8 @@ typedef struct t_flags
 	char	*strNum;
 }	t_flags;
 
+int	ft_printf(const char *format, ...)
+
 // utils
 void	ft_putchar_len(char c, int *len);
 int		ft_strchr(char *s, char c);
