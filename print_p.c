@@ -25,6 +25,7 @@ void	print_p(t_flags fl, va_list args, int *len, const char c)
 		print_p_zero(fl, len, size);
 	else
 		ft_putstr_len_p(fl.strNum, len);
+	free(fl.strNum);
 }
 
 void	print_p_no_zero(t_flags fl, int *len, int size)
