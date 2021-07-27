@@ -15,8 +15,8 @@
 void	print_p(t_flags fl, va_list args, int *len, const char c)
 {
 	int	size;
-
-	fl.strNum = ft_int_to_hex_pxX(va_arg(args, unsigned long int), c);
+	
+	fl.strNum = ft_int_to_hex_pxX(va_arg(args, unsigned long int), c);  // "0"; 
 	size = (int)ft_strlen(fl.strNum);
 	size = size + 2;
 	if (fl.zero == 0 && fl.width > size)
@@ -65,7 +65,7 @@ void	ft_putstr_len_p(char *s, int *len)
 {
 	int	i;
 
-	write(1, "0x", 2);
+	ft_putstr_len("0x", len);
 	if (s != NULL)
 	{
 		i = 0;

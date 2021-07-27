@@ -63,11 +63,13 @@ int	ft_len_hex(unsigned long int x)
 
 char	*ft_int_to_hex_pxX(unsigned long int n, const char c)
 {
-	int		len;
-	char	*result;
-	int		temp;
+	int						len;
+	char					*result;
+	unsigned long int		temp;
 
 	len = ft_len_hex(n);
+	if (n == 0)
+		len++;
 	result = (char *)malloc(len + 1);
 	if (result == NULL)
 		return (0);

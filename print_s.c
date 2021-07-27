@@ -16,6 +16,9 @@ void	print_s(char *c, int *len, t_flags fl)
 {
 	int	size;
 
+	//if (c == NULL)
+	//	ft_putstr_len("(null)", len);
+	//	return ;
 	size = (int)ft_strlen(c);
 	if ((fl.precision < size && fl.precision > 0) && fl.width < size)
 	{

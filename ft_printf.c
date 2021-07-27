@@ -28,17 +28,21 @@ static void	handle_types(const char c, int *len, va_list args, t_flags fl)
 		print_xX(fl, args, len, c);
 	if (c == '%')
 		print_pct(len);
+	if (ft_strchr(TYPES, c) == 0)
+		(*len) = -1;
 }
 
 t_flags	get_flag_width_precision(const char *format, t_flags fl, int *i)
 {
 	if (format[*i] == '-')
 		fl.minus = 1;
-	if (format[*i] == '0' && fl.minus == 0 && fl.width == 0)
+	else if (format[*i] == '0' && fl.minus == 0 && fl.width == 0)
 		fl.zero = 1;
-	if (format[*i] == '.')
+	else if (format[*i] == '.')
+	{
 		fl.dot = 1;
-	if (ft_strchr(NUMBERS, format[*i]))
+	}
+	else if (ft_strchr(NUMBERS, format[*i]))
 	{
 		if (fl.dot == 1)
 			fl.precision = (fl.precision * 10) + (format[*i] - '0');
@@ -63,14 +67,17 @@ int	ft_printf(const char *format, ...)
 		if (format[i] != '%')
 			ft_putchar_len(format[i++], &len);
 		else
-		{
+		{ 	
+			i++;
 			fl = ft_clean_flags ();
-			while (format[++i] && ft_strchr(FLAGS, format[i]))
+			while (format[i] && ft_strchr(FLAGS, format[i]))
 			{
 				fl = get_flag_width_precision(format, fl, &i);
-				i++, len++;
+				i++; len++;
 			}
 			handle_types(format[i++], &len, args, fl);
+			if (len == -1)								//<- appinha
+				return (-1);							// <- appinha
 		}
 	}
 	va_end(args);

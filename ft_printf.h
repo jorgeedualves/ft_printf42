@@ -19,6 +19,7 @@
 # include "string.h"
 # define FLAGS			"-0.0123456789"
 # define NUMBERS		"0123456789"
+# define TYPES			"csidupxX%"
 
 typedef struct t_flags
 {
