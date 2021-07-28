@@ -101,3 +101,35 @@ char        *ft_ullitoa_base(unsigned long long int n, char *base)
         a[0] = '0';
     return (a);
 }
+
+
+/*
+char	*ft_int_to_hex_pxX(unsigned long int n, const char c)
+{
+	int						size;
+	char					*result;
+	unsigned long int		temp;
+	if (n == 0)
+		size++;
+	result = (char *)malloc(size + 1);
+	if (result == NULL)
+		return (0);
+	result[size] = '\0';
+	while (size >= 0)
+	{
+		temp = 0;
+		temp = n % 16;
+		if (temp < 10)
+			result[size--] = temp + 48;
+		else
+		{
+			if (c == 'x' || c == 'p')
+				result[size--] = temp + 87;
+			else
+				result[size--] = temp + 55;
+		}
+		n = n / 16;
+	}
+	return (result);
+}
+*/

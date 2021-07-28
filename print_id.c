@@ -18,8 +18,6 @@ void	print_i_d(t_flags fl, va_list args, int *len)
 
 	fl.strNum = ft_itoa(va_arg(args, int));
 	size = (int)ft_strlen(fl.strNum);
-	//printf("fl.dot: %i",fl.dot);
-	//printf("fl.precision: %i",fl.precision);
 	if (fl.width <= size && fl.precision <= size)
 		ft_putstr_len(fl.strNum, len);
 	if (fl.precision > size)
@@ -40,7 +38,7 @@ void	print_i_d(t_flags fl, va_list args, int *len)
 			ft_putstr_len(fl.strNum, len);
 		}
 	}
-	free(fl.strNum);	
+	free(fl.strNum);
 }
 
 void	print_space(t_flags fl, int size, int *len)
