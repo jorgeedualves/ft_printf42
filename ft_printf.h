@@ -105,4 +105,7 @@ char    *ft_ullitoa_base(unsigned long long int n, char *base);
 
 int	return_hex_len(int num);
 
+//char		*ft_dtox(unsigned long int n, const char *base, char c);
+//static char	*ft_trata_str(char *str, char c);
+
 #endif

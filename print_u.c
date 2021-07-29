@@ -38,17 +38,15 @@ void	print_u(t_flags fl, va_list args, int *len)
 
 void	print_u_space_string(t_flags fl, int *len, int size)
 {
+	if (fl.minus == 1)
 	{
-		if (fl.minus == 1)
-		{
-			ft_putstr_len(fl.strNum, len);
-			print_space(fl, size, len);
-		}
-		else
-		{
-			print_space(fl, size, len);
-			ft_putstr_len(fl.strNum, len);
-		}
+		ft_putstr_len(fl.strNum, len);
+		print_space(fl, size, len);
+	}
+	else
+	{
+		print_space(fl, size, len);
+		ft_putstr_len(fl.strNum, len);
 	}
 }
 
