@@ -22,8 +22,6 @@
 # define FLAGS			"-0.0123456789"
 # define NUMBERS		"0123456789"
 # define TYPES			"csidupxX%"
-
-
 # define HEXALOW    "0123456789abcdef"
 # define HEXAUPP    "0123456789ABCDEF" 
 
@@ -35,31 +33,11 @@ typedef struct t_flags
 	int		dot;
 	int		precision;
 	char	*strNum;
-
-	unsigned long long int    ulli;
-    long long int            lli;
-	
+	unsigned long long int	ulli;
+	long long int	lli;	
 }	t_flags;
 
 int	ft_printf(const char *format, ...);
-
-// utils
-void	ft_putchar_len(char c, int *len);
-int		ft_strchr(char *s, char c);
-size_t	ft_strlen(const char *s);
-void	ft_putstr(char *s);
-void	ft_putchar(char c);
-
-//utils_2
-void	ft_putnbr(int n);
-int		ft_len(int num);
-int		ft_to_positive(int num);
-char	*ft_itoa(int n);
-
-//utils_3
-t_flags	ft_clean_flags(void);
-void	ft_putstr_len(char *s, int *len);
-void	print_pct(int *len);
 
 //print_c
 void	print_c(char c, int *len, t_flags fl);
@@ -90,22 +68,30 @@ void	print_p_zero(t_flags fl, int *len, int size);
 void	ft_putstr_len_p(char *s, int *len);
 char	*ft_int_to_hex_p(unsigned long int n, const char c);
 
-
 //print_xX
-//void	print_xX(t_flags fl, va_list args, int *len, const char c);
-
-void    print_xX(t_flags fl, va_list args, int *len, const char c);
-
-
+void	print_xX(t_flags fl, va_list args, int *len, const char c);
 void	print_xX_right_aligned(t_flags fl, int *len, int size);
 int		ft_len_hex(unsigned long int x);
 char	*ft_int_to_hex_pxX(unsigned long int n, const char c);
-
-char    *ft_ullitoa_base(unsigned long long int n, char *base);
-
+char	*ft_ullitoa_base(unsigned long long int n, char *base);
 int	return_hex_len(int num);
 
-//char		*ft_dtox(unsigned long int n, const char *base, char c);
-//static char	*ft_trata_str(char *str, char c);
+// utils
+void	ft_putchar_len(char c, int *len);
+int		ft_strchr(char *s, char c);
+size_t	ft_strlen(const char *s);
+void	ft_putstr(char *s);
+void	ft_putchar(char c);
+
+//utils_2
+void	ft_putnbr(int n);
+int		ft_len(int num);
+int		ft_to_positive(int num);
+char	*ft_itoa(int n);
+
+//utils_3
+t_flags	ft_clean_flags(void);
+void	ft_putstr_len(char *s, int *len);
+void	print_pct(int *len);
 
 #endif

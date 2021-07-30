@@ -27,7 +27,7 @@ int	handle_types(const char c, int *len, va_list args, t_flags fl)
 	if (c == 'x' || c == 'X')
 		print_xX(fl, args, len, c);
 	if (c == '%')
-		print_pct(len);
+		ft_putstr_len("%", len);
 	if (ft_strchr(TYPES, c) == 0)
 		(*len) = -1;
 	return (*len);
@@ -48,8 +48,8 @@ t_flags	get_flag_width_precision(const char *format, t_flags fl, int *i)
 		if (fl.dot == 1)
 			fl.precision = (fl.precision * 10) + (format[*i] - '0');
 		else
-			fl.width = (fl.width * 10) + (format[*i] - '0');
-	}	
+			fl.width = (fl.width * 10) + (format[*i] - '0');	
+	}
 	return (fl);
 }
 
@@ -83,36 +83,6 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (len);
-}
-
-
-int main (void)
-{
-	//categoria -s
-	printf("\n\n");
-	int len1, len2;
-	len1 = printf(" %-1s %-2s ", "", "-");
-	len2 = printf(" %-2s %-3s %-4s %-5s ", " - ", "", "4", "");
-	printf("\nlen   printf: %i %i\n", len1, len2);
-
-	int len11, len22;
-	len11 = ft_printf(" %-1s %-2s ", "", "-");
-	len22 = ft_printf(" %-2s %-3s %-4s %-5s ", " - ", "", "4", "");
-	printf("\nlen ft_printf: %i %i\n\n\n\n", len11, len22);
-
-	//categoria -p
-	printf("\n\n");
-	int len3, len4;
-	len3 = printf(" %-4p ", 17);
-	len4 = printf(" %-9p %-10p ", LONG_MIN, LONG_MAX);
-	printf("\nlen   printf: %i %i\n", len1, len2);
-
-	int len33, len44;
-	len11 = ft_printf(" %-4p ", 17);
-	len22 = ft_printf(" %-9p %-10p ", LONG_MIN, LONG_MAX);
-	printf("\nlen ft_printf: %i %i\n\n\n\n", len11, len22);
-
-	return (0);
 }
 
 /*
