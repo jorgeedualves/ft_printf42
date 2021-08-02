@@ -33,11 +33,11 @@ int	handle_types(const char c, int *len, va_list args, t_flags fl)
 	return (*len);
 }
 
-t_flags	get_flag_width_precision(const char *format, t_flags fl, int *i)
+t_flags	get_flag_width_precision(const char *format, t_flags fl, int *i) 
 {
 	if (format[*i] == '-')
 		fl.minus = 1;
-	else if (format[*i] == '0' && fl.minus == 0 && fl.width == 0)
+	else if (format[*i] == '0' && fl.minus == 0 && fl.width == 0 && fl.dot == 0)
 		fl.zero = 1;
 	else if (format[*i] == '.')
 	{
@@ -66,7 +66,7 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] != '%')
-			ft_putchar_len(format[i++], &len);   // espaço len1 + c len2 + espaço len3 + espaço len4
+			ft_putchar_len(format[i++], &len);			//(" %.10x ", LONG_MAX)
 		else
 		{ 	
 			i++;

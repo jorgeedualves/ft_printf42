@@ -21,34 +21,82 @@ void    print_xX(t_flags fl, va_list args, int *len, const char c)
     else if (c == 'x')
         fl.strNum = ft_ullitoa_base(fl.ulli, HEXALOW);
     size = (int)ft_strlen(fl.strNum);
-    if (fl.minus == 0 && fl.width > size)
-        print_xX_right_aligned(fl, len, size);
-    else if (fl.minus == 1 && fl.width > size)
-    {
+    if ((fl.width == 0 || fl.width <= size) && (fl.precision == 0 || fl.precision <= size))
         ft_putstr_len(fl.strNum, len);
-        print_space(fl, size, len);
-    }
-    else
-        ft_putstr_len(fl.strNum, len);
-    free(fl.strNum);
-}
-
-void	print_xX_right_aligned(t_flags fl, int *len, int size)
-{
-	if (fl.zero == 0)
-	{
-		print_space(fl, size, len);
-		ft_putstr_len(fl.strNum, len);
-	}
-	if (fl.zero == 1)
-	{
-		while (fl.width - size > 0)
+    else if ((fl.width == 0 || fl.width <= size) && (fl.precision  > size))		//(" %.10x ", LONG_MAX)
+  	{
+		while (fl.precision - size > 0)
 		{
 			write(1, "0", 1);
-			fl.width--, (*len)++;
+			fl.precision--, (*len)++;
 		}
 		ft_putstr_len(fl.strNum, len);
 	}
+    else if (fl.width > size && (fl.precision == 0 || fl.precision <= size))
+    {
+        if (fl.minus == 1)
+        {
+ 	    	ft_putstr_len(fl.strNum, len);
+   		   	while (fl.width - size > 0)
+		    {
+		  		write(1, " ", 1);
+		    	fl.width--, (*len)++;
+	    	}
+        }
+		else
+		{
+ 	       if (fl.zero == 0)
+   	    	{
+   		   		while (fl.width - size > 0)
+		    	{
+			   		write(1, " ", 1);
+			    	fl.width--, (*len)++;
+		    	}
+		    	ft_putstr_len(fl.strNum, len);
+        	}
+        	else
+			{
+  		    	while (fl.width - size > 0)
+		    	{
+			    	write(1, "0", 1);
+			    	fl.width--, (*len)++;
+		    	}
+		   		ft_putstr_len(fl.strNum, len);      
+			}
+ 		}
+    }
+    else if (fl.width > size && fl.precision > size)
+    {
+		if (fl.minus == 1)
+		{
+  			while (fl.precision - size > 0)
+			{
+			    write(1, "0", 1);
+			    fl.precision--, (*len)++;
+			}
+			ft_putstr_len(fl.strNum, len);
+ 			while (fl.width - fl.precision > 0)
+			{
+				write(1, " ", 1);
+				fl.width--, (*len)++;
+			}
+		}
+		else
+		{
+ 			while (fl.width - fl.precision > 0)
+			{
+				write(1, " ", 1);
+				fl.width--, (*len)++;
+			}
+  			while (fl.precision - size > 0)
+			{
+			    write(1, "0", 1);
+			    fl.precision--, (*len)++;
+	    	}
+	    	ft_putstr_len(fl.strNum, len);
+		}
+    }
+    free(fl.strNum);
 }
 
 int	ft_len_hex(unsigned long int x)
@@ -63,7 +111,7 @@ int	ft_len_hex(unsigned long int x)
 	}
 	return (len);
 }
-
+                         
 char        *ft_ullitoa_base(unsigned long long int n, char *base)
 {
     char                 	   *a;

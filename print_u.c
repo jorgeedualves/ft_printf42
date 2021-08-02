@@ -23,7 +23,7 @@ void	print_u(t_flags fl, va_list args, int *len)
 		while (fl.precision - size > 0)
 		{
 			write(1, "0", 1);
-			fl.precision--, len++;
+			fl.precision--, (*len)++;
 		}
 		ft_putstr_len(fl.strNum, len);
 	}
@@ -31,6 +31,8 @@ void	print_u(t_flags fl, va_list args, int *len)
 		print_u_zero_string(fl, len, size);
 	else if (fl.width > size && fl.precision <= size)
 		print_u_space_string(fl, len, size);
+	else if (fl.dot == 1 && fl.precision == 0 && fl.width == 0)
+		write(1, "", 0);
 	else
 		ft_putstr_len(fl.strNum, len);
 	free(fl.strNum);
@@ -57,7 +59,7 @@ void	print_u_zero_string(t_flags fl, int *len, int size)
 		while (fl.width - size > 0)
 		{
 			write(1, "0", 1);
-			fl.width--, len++;
+			fl.width--, (*len)++;
 		}
 		ft_putstr_len(fl.strNum, len);
 	}
@@ -90,7 +92,7 @@ char	*ft_uitoa(unsigned int n)
 	char	*result;
 
 	len = ft_ulen(n);
-	result = (char *)malloc(sizeof(char) * len - 1);
+	result = (char *)malloc(sizeof(char) * len + 1);
 	if (result == NULL)
 		return (0);
 	result[len] = '\0';
