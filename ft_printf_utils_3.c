@@ -12,31 +12,71 @@
 
 #include "ft_printf.h"
 
-t_flags	ft_clean_flags(void)
+void	print_space(t_flags fl, int size, int *len)
 {
-	t_flags	fl;
-
-	fl.minus = 0;
-	fl.zero = 0;
-	fl.width = 0;
-	fl.dot = 0;
-	fl.precision = 0;
-	return (fl);
-}
-
-void	ft_putstr_len(char *s, int *len)
-{
-	int	i;
-
-	if (s != NULL)
+	if (fl.precision > 0 && fl.width > size)
 	{
-		i = 0;
-		while (s[i])
-			ft_putchar_len(s[i++], len);
+		while (fl.width - size > 0)
+		{
+			write(1, " ", 1);
+			fl.width--, (*len)++;
+		}
+	}
+	else if (fl.precision > 0)
+	{
+		while (fl.precision - size > 0)
+		{
+			write(1, "0", 1);
+			fl.precision--, (*len)++;
+		}
+	}
+	else
+	{
+		while (fl.width - size > 0)
+		{
+			write(1, " ", 1);
+			fl.width--, (*len)++;
+		}
 	}
 }
 
-void	print_pct(int *len)
+void	print_simple_space_i_d(t_flags fl, int size, int *len)
 {
-	ft_putstr_len("%", len);
+	while (fl.width - size > 0)
+	{
+		write(1, " ", 1);
+		fl.width--, (*len)++;
+	}
+}
+
+void	print_space_or_zero_number_i_d(t_flags fl, int size, int *len)
+{
+	if (fl.minus == 1)
+	{
+		ft_putstr_len(fl.strNum, len);
+		print_simple_space_i_d(fl, size, len);
+	}
+	else if (fl.zero == 0 || (fl.zero == 1 && fl.dot == 1))
+	{
+		print_simple_space_i_d(fl, size, len);
+		ft_putstr_len(fl.strNum, len);
+	}
+	else
+		print_width_zero_i_d(fl, size, len);
+}
+
+void	print_space_neg_number_i_d(t_flags fl, int size, int *len)
+{
+	print_space(fl, size, len);
+	ft_putchar_len('-', len);
+	ft_putstr_len(fl.strNum, len);
+}
+
+void	print_simple_space_width_precision_i_d(t_flags fl, int *len)
+{
+	while (fl.width - fl.precision > 0)
+	{
+		write(1, " ", 1);
+		fl.width--, (*len)++;
+	}
 }

@@ -15,20 +15,20 @@
 void	print_p(t_flags fl, va_list args, int *len, const char c)
 {
 	int	size;
-	
-	fl.strNum = ft_int_to_hex_p(va_arg(args, unsigned long int), c);  // "0"; 0x45aalja
+
+	fl.strNum = ft_int_to_hex_p(va_arg(args, unsigned long int), c);
 	size = (int)ft_strlen(fl.strNum);
 	size = size + 2;
 	if (fl.zero == 0 && fl.width > size)
-		print_p_no_zero(fl, len, size);
+		print_no_zero_p(fl, len, size);
 	else if (fl.zero == 1 && fl.width > size)
-		print_p_zero(fl, len, size);
+		print_zero_p(fl, len, size);
 	else
 		ft_putstr_len_p(fl.strNum, len);
 	free(fl.strNum);
 }
 
-void	print_p_no_zero(t_flags fl, int *len, int size)
+void	print_no_zero_p(t_flags fl, int *len, int size)
 {
 	if (fl.minus == 0)
 	{
@@ -42,15 +42,15 @@ void	print_p_no_zero(t_flags fl, int *len, int size)
 	}
 }
 
-void	print_p_zero(t_flags fl, int *len, int size)
+void	print_zero_p(t_flags fl, int *len, int size)
 {
 	if (fl.minus == 0)
 	{
-		write(1, "0x", 2);
+		ft_putstr_len("0x", len);
 		while (fl.width - size > 0)
 		{
 			write(1, "0", 1);
-			fl.width--, len++;
+			fl.width--, (*len)++;
 		}
 		ft_putstr_len(fl.strNum, len);
 	}
@@ -93,13 +93,8 @@ char	*ft_int_to_hex_p(unsigned long int n, const char c)
 		temp = n % 16;
 		if (temp < 10)
 			result[len--] = temp + 48;
-		else
-		{
-			if (c == 'x' || c == 'p')
-				result[len--] = temp + 87;
-			else
-				result[len--] = temp + 55;
-		}
+		else if (c == 'p')
+			result[len--] = temp + 87;
 		n = n / 16;
 	}
 	return (result);

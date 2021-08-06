@@ -33,5 +33,5 @@ void	print_c(char c, int *len, t_flags fl)
 		}
 	}
 	else
-		ft_putchar_len(c, len);	
+		ft_putchar_len(c, len);
 }
