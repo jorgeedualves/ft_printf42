@@ -80,3 +80,4 @@ void	print_simple_space_width_precision_i_d(t_flags fl, int *len)
 		fl.width--, (*len)++;
 	}
 }
+

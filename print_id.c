@@ -128,3 +128,4 @@ void	print_neg_corner_cases_i_d(t_flags fl, int size, int *len)
 	else
 		print_space_neg_number_i_d(fl, size, len);
 }
+
