@@ -50,7 +50,8 @@ void	print_zero_p(t_flags fl, int *len, int size)
 		while (fl.width - size > 0)
 		{
 			write(1, "0", 1);
-			fl.width--, (*len)++;
+			fl.width--;
+			(*len)++;
 		}
 		ft_putstr_len(fl.strNum, len);
 	}

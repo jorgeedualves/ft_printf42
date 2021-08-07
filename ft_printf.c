@@ -40,7 +40,9 @@ t_flags	get_flag_width_precision(const char *format, t_flags fl, int *i)
 	else if (format[*i] == '0' && fl.minus == 0 && fl.width == 0 && fl.dot == 0)
 		fl.zero = 1;
 	else if (format[*i] == '.')
+	{
 		fl.dot = 1;
+	}
 	else if (ft_strchr(NUMBERS, format[*i]))
 	{
 		if (fl.dot == 1)
@@ -48,6 +50,12 @@ t_flags	get_flag_width_precision(const char *format, t_flags fl, int *i)
 		else
 			fl.width = (fl.width * 10) + (format[*i] - '0');
 	}
+	else if (format[*i] == '#')
+		fl.hash = 1;
+	else if (format[*i] == '+')
+		fl.plus = 1;
+	else if (format[*i] == ' ')
+		fl.space = 1;
 	return (fl);
 }
 

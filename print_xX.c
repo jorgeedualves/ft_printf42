@@ -26,7 +26,7 @@ void	print_xX(t_flags fl, va_list args, int *len, const char c)
 		print_zero_corner_cases(fl, size, len);
 	else if ((fl.width == 0 || fl.width <= size)
 		&& (fl.precision == 0 || fl.precision <= size))
-		ft_putstr_len(fl.strNum, len);
+		basic_output_check_hash_xX(fl, len, c);
 	else if ((fl.width == 0 || fl.width <= size) && (fl.precision > size))
 		print_precision_zero_i_d(fl, size, len);
 	else if (fl.width > size && (fl.precision == 0 || fl.precision <= size))
@@ -51,28 +51,29 @@ int	ft_len_hex(unsigned long int x)
 
 char	*ft_ullitoa_base(unsigned long long int n, char *base)
 {
-	char					*a;
-	unsigned long long int	nbr;
-	size_t					size;
-	int						b_len;
+	char						*result;
+	unsigned long long int		number;
+	size_t						size;
+	int							base_len;
 
-	b_len = ft_strlen(base);
-	nbr = n;
+	base_len = ft_strlen(base);
+	number = n;
 	size = 1;
-	while (n /= b_len)
-		size++;
-	a = (char *)malloc(size + 1);
-	if (!a)
+	n /= base_len;
+	while (n)
+		size++, n /= base_len;
+	result = (char *)malloc(size + 1);
+	if (!result)
 		return (0);
-	a[size--] = '\0';
-	while (nbr > 0)
+	result[size--] = '\0';
+	while (number > 0)
 	{
-		a[size--] = base[nbr % b_len];
-		nbr /= b_len;
+		result[size--] = base[number % base_len];
+		number /= base_len;
 	}
-	if (size == 0 && a[1] == '\0')
-		a[0] = '0';
-	return (a);
+	if (size == 0 && result[1] == '\0')
+		result[0] = '0';
+	return (result);
 }
 
 void	print_corner_cases_xX(t_flags fl, int size, int *len)
@@ -90,7 +91,8 @@ void	print_corner_cases_xX(t_flags fl, int size, int *len)
 			while (fl.width - (fl.precision + i) > 0)
 			{
 				write(1, " ", 1);
-				fl.width--, (*len)++;
+				fl.width--;
+				(*len)++;
 			}
 		}
 		else
@@ -108,11 +110,11 @@ void	print_regular_cases_xX(t_flags fl, int size, int *len)
 	if (fl.minus == 1)
 	{
 		ft_putstr_len(fl.strNum, len);
-		print_simple_space_i_d(fl, size, len);
+		print_simple_space_width_i_d(fl, size, len);
 	}
 	else if (fl.zero == 0 || (fl.zero == 1 && fl.dot == 1))
 	{
-		print_simple_space_i_d(fl, size, len);
+		print_simple_space_width_i_d(fl, size, len);
 		ft_putstr_len(fl.strNum, len);
 	}
 	else

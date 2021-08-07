@@ -31,7 +31,8 @@ void	print_width_space_u(t_flags fl, int *len)
 	while (fl.width > 1)
 	{
 		write(1, " ", 1);
-		fl.width--, (*len)++;
+		fl.width--;
+		(*len)++;
 	}
 }
 
@@ -40,7 +41,8 @@ void	print_precision_zero_u(t_flags fl, int *len)
 	while (fl.precision > 0)
 	{
 		write(1, "0", 1);
-		fl.precision--, (*len)++;
+		fl.precision--;
+		(*len)++;
 	}	
 }
 
@@ -49,7 +51,8 @@ void	print_simple_zero_xX(t_flags fl, int size, int *len)
 	while (fl.width - size > 0)
 	{
 		write(1, "0", 1);
-		fl.width--, (*len)++;
+		fl.width--;
+		(*len)++;
 	}
 }
 
@@ -62,5 +65,6 @@ t_flags	ft_clean_flags(void)
 	fl.width = 0;
 	fl.dot = 0;
 	fl.precision = 0;
+	fl.hash = 0;
 	return (fl);
 }

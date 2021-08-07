@@ -18,7 +18,8 @@ void	print_precision_neg_zero_number_i_d(t_flags fl, int size, int *len)
 	while (fl.precision - (size - 1) > 0)
 	{
 		write(1, "0", 1);
-		fl.precision--, (*len)++;
+		fl.precision--;
+		(*len)++;
 	}
 	ft_putstr_len(fl.strNum, len);
 }
@@ -29,7 +30,8 @@ void	print_width_neg_zero_number_i_d(t_flags fl, int size, int *len)
 	while (fl.width - (size - 1) > 0)
 	{
 		write(1, "0", 1);
-		fl.width--, (*len)++;
+		fl.width--;
+		(*len)++;
 	}
 	ft_putstr_len(fl.strNum, len);
 }
@@ -40,7 +42,8 @@ void	print_neg_precision_zero_number_i_d(t_flags fl, int size, int *len)
 	while (fl.precision > size - 1)
 	{
 		write(1, "0", 1);
-		fl.precision--, (*len)++;
+		fl.precision--;
+		(*len)++;
 	}
 	ft_putstr_len(fl.strNum, len);
 }
@@ -51,7 +54,8 @@ void	print_neg_prec_zero_number_space_i_d(t_flags fl, int size, int *len)
 	while (fl.width - (size - 1) > 0)
 	{
 		write(1, " ", 1);
-		fl.width--, (*len)++;
+		fl.width--;
+		(*len)++;
 	}
 }
 

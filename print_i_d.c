@@ -50,7 +50,10 @@ void	print_positive_i_d(t_flags fl, int number, int *len)
 	else if (fl.width > size && fl.precision > size)
 		print_corner_cases_i_d(fl, size, len);
 	else
+	{
+		check_for_plus_and_space_i_d(fl, len);
 		ft_putstr_len(fl.strNum, len);
+	}
 	free(fl.strNum);
 }
 
@@ -111,7 +114,8 @@ void	print_neg_corner_cases_i_d(t_flags fl, int size, int *len)
 		while (fl.width - size > 0)
 		{
 			write(1, " ", 1);
-			fl.width--, (*len)++;
+			fl.width--;
+			(*len)++;
 		}
 	}
 	else if (fl.minus == 1 && fl.precision == size)
@@ -120,7 +124,8 @@ void	print_neg_corner_cases_i_d(t_flags fl, int size, int *len)
 		while (fl.width - size > 1)
 		{
 			write(1, " ", 1);
-			fl.width--, (*len)++;
+			fl.width--;
+			(*len)++;
 		}
 	}
 	else if (fl.minus == 1 && fl.precision >= size)
@@ -128,4 +133,3 @@ void	print_neg_corner_cases_i_d(t_flags fl, int size, int *len)
 	else
 		print_space_neg_number_i_d(fl, size, len);
 }
-

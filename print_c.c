@@ -19,7 +19,8 @@ void	print_c(char c, int *len, t_flags fl)
 		while (fl.width > 1)
 		{
 			write(1, " ", 1);
-			fl.width--, (*len)++;
+			fl.width--;
+			(*len)++;
 		}
 		ft_putchar_len(c, len);
 	}
@@ -29,7 +30,8 @@ void	print_c(char c, int *len, t_flags fl)
 		while (fl.width > 1)
 		{
 			write(1, " ", 1);
-			fl.width--, (*len)++;
+			fl.width--;
+			(*len)++;
 		}
 	}
 	else
