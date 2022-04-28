@@ -26,3 +26,6 @@ ft_printf42 $ make fclean
 ft_printf42 $ make re
 ```
 <br/>See Makefile<br/>
+
+Made by Jorge!
+See my LinkedIn:https://www.linkedin.com/in/jorge-eduardo-alves-094b4331/
