@@ -9,10 +9,10 @@ ft_printf42 is a project to recode printf in C from libc.  It will manage the fo
 
 ## Use:
 
-🚧 project:<br/>
+🚧 project:
 ```
 ft_printf42 $ make
-
+```
 :shower: Clean Obj files:<br/>
 ```
 ft_printf42 $ make clean
