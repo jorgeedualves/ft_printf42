@@ -27,5 +27,5 @@ ft_printf42 $ make re
 ```
 <br/>See Makefile<br/>
 
-Made by Jorge!
+Made with Jorge, Alfredo https://github.com/Alfredo-Neto e Alexandre https://github.com/alezamarion!
 See my LinkedIn:https://www.linkedin.com/in/jorge-eduardo-alves-094b4331/
