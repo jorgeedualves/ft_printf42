@@ -7,25 +7,44 @@ Entregando os arquivos: * .c, * / *. c, * .h, * / *. h, Makefile.
 
 ft_printf42 is a project to recode printf in C from libc.  It will manage the following conversions: cspdiuxX% !  Handle any combination of the following flags: '-0.'  and minimum field width with all conversions.  Manage all of the following flags: '#+' (yes, one of them is a space).  Delivering the files: * .c, * / *.  c, * .h, * / *.  h, Makefile. <br/>
 
+## Badge
+
+<img src="ft_printfm.png">
+
+## SKills
+
+ - Rigor
+ - Algorithms & AI
+
+ ## My grade
+
+ <img src="score printf.png"> 
+
 ## Use:
 
 🚧 project:
 ```
-ft_printf42 $ make
+ft_printf42 $ make bonus
+```
+Compile your main with the library:
+```
+clang main.c libftprintf.a
 ```
 :shower: Clean Obj files:<br/>
 ```
-ft_printf42 $ make clean
+$ make clean
 ```
 :shower: :shower: Clean All (obj files + binary):<br/>
 ```
-ft_printf42 $ make fclean
+$ make fclean
 ```
 :shower: :shower: 🚧 Clean All + build:<br/>
 ```
-ft_printf42 $ make re
+$ make re
 ```
 <br/>See Makefile<br/>
 
-Made with Jorge, Alfredo Neto https://github.com/Alfredo-Neto e Alexandre Zamarion https://github.com/alezamarion! <br />
-See my LinkedIn:https://www.linkedin.com/in/jorge-eduardo-alves-094b4331/
+Made with Jorge Alves,</br> 
+Alfredo Neto https://github.com/Alfredo-Neto </ br>
+Alexandre Zamarion https://github.com/alezamarion <br />
+See my LinkedIn: https://www.linkedin.com/in/jorge-eduardo-alves-094b4331/
