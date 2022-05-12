@@ -44,7 +44,9 @@ $ make re
 ```
 <br/>See Makefile<br/>
 
-Made with Jorge Alves,</br> 
-Alfredo Neto https://github.com/Alfredo-Neto </br>
-Alexandre Zamarion https://github.com/alezamarion </br >
-See my LinkedIn: https://www.linkedin.com/in/jorge-eduardo-alves-094b4331/
+Made with: <br/>
+Jorge Alves <br/>
+Alfredo Neto https://github.com/Alfredo-Neto<br/>
+Alexandre Zamarion https://github.com/alezamarion <br />
+See my LinkedIn: <br />
+<a href="https://www.linkedin.com/in/jorge-eduardo-alves-094b4331/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
