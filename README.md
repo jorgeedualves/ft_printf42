@@ -18,7 +18,11 @@ ft_printf42 is a project to recode printf in C from libc.  It will manage the fo
 
  ## My grade
 
- <img src="score printf.png"> 
+ <img src="img/score printf.png"> 
+
+ ## Flowchat
+
+ <img src="img/prinf.png">
 
 ## Use:
 
