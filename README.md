@@ -9,7 +9,7 @@ ft_printf42 is a project to recode printf in C from libc.  It will manage the fo
 
 ## Badge
 
-<img src="ft_printfm.png">
+<img src="img/ft_printfm.png">
 
 ## SKills
 
@@ -22,7 +22,7 @@ ft_printf42 is a project to recode printf in C from libc.  It will manage the fo
 
  ## Flowchat
 
- <img src="img/prinf.png">
+ <img src="img/printf.png">
 
 ## Use:
 
